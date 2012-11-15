@@ -56,4 +56,11 @@ public class ArenaAPI {
 		return game;
 	}
 
+	public int getMapSize() {
+
+		int size = main.list.size();
+
+		return size;
+	}
+
 }

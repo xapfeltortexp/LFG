@@ -2,12 +2,14 @@ package lostForceGames;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 
 import lostForceGames.arena.ArenaAPI;
 import lostForceGames.arena.ArenaListener;
 import lostForceGames.commands.CommandCreate;
 import lostForceGames.commands.CommandEnable;
+import lostForceGames.commands.CommandJoin;
 
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,12 +20,16 @@ public class LostForceGames extends JavaPlugin {
 	public ArrayList<String> gamers = new ArrayList<String>();
 	public ArrayList<String> acctualMap = new ArrayList<String>();
 	
+	public List<String> list = getConfig().getStringList("LostForceGames.Maps");
+	
 	public String prefix = ChatColor.AQUA + "[" + ChatColor.DARK_GRAY + ChatColor.BOLD + "LF" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Games" + ChatColor.AQUA + "] " + ChatColor.GRAY;
 	
 	ArenaListener al;
 	
 	public CommandCreate cmd;
 	public CommandEnable cmde;
+	public CommandJoin cmdj;
+	
 	public ArenaAPI api;
 	
 	public boolean enable;
@@ -39,11 +45,13 @@ public class LostForceGames extends JavaPlugin {
 		
 		cmd = new CommandCreate(this);
 		cmde = new CommandEnable(this);
+		cmdj = new CommandJoin(this);
 		
 		api = new ArenaAPI(this);
 		
 		getCommand("lfg").setExecutor(cmde);
 		getCommand("lfg").setExecutor(cmd);
+		getCommand("lfg").setExecutor(cmdj);
 		
 		enable = true;
 		
@@ -59,6 +67,7 @@ public class LostForceGames extends JavaPlugin {
 		
 		getConfig().options().copyDefaults(true);
 		saveConfig();
+		
 	}
 
 }

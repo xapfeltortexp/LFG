@@ -41,6 +41,11 @@ public class CommandJoin implements CommandExecutor {
 		if (args.length == 1) {
 			if (args[0].equalsIgnoreCase("join")) {
 				
+				if(api.getMapSize() == 0) {
+					player.sendMessage(main.prefix + "No Maps found!");
+					return true;
+				}
+				
 				String name = api.getAcctualArena(main.acctualMap);
 				
 				int x = main.getConfig().getInt("LostForceGames.Location_1." + name + ".X");
