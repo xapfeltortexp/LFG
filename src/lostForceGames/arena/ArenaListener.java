@@ -1,5 +1,7 @@
 package lostForceGames.arena;
 
+import java.util.List;
+
 import lostForceGames.LostForceGames;
 
 import org.bukkit.ChatColor;
@@ -41,7 +43,7 @@ public class ArenaListener implements Listener {
 		final Player player = event.getPlayer();
 		final Action action = event.getAction();
 
-		if (action == Action.RIGHT_CLICK_BLOCK && (player.hasPermission("LostForceGames.create")) && player.getInventory().getItemInHand().getType() == Material.GOLD_AXE) {
+		if (action == Action.LEFT_CLICK_BLOCK && (player.hasPermission("LostForceGames.create")) && player.getInventory().getItemInHand().getType() == Material.GOLD_AXE) {
 
 			if (!main.creator.containsKey(player.getName())) {
 				player.sendMessage(main.prefix + "You forgot to define the Arena Name");
@@ -62,7 +64,7 @@ public class ArenaListener implements Listener {
 			main.saveConfig();
 		}
 
-		if (action == Action.LEFT_CLICK_BLOCK && (player.hasPermission("LostForceGames.create")) && player.getInventory().getItemInHand().getType() == Material.GOLD_AXE) {
+		if (action == Action.RIGHT_CLICK_BLOCK && (player.hasPermission("LostForceGames.create")) && player.getInventory().getItemInHand().getType() == Material.GOLD_AXE) {
 
 			if (!main.creator.containsKey(player.getName())) {
 				player.sendMessage(main.prefix + "You forgot to define the Arena Name");
@@ -80,9 +82,14 @@ public class ArenaListener implements Listener {
 			main.getConfig().addDefault("LostForceGames.Location_2." + key + ".X", x);
 			main.getConfig().addDefault("LostForceGames.Location_2." + key + ".Y", y);
 			main.getConfig().addDefault("LostForceGames.Location_2." + key + ".Z", z);
+			
+			List<String> list = main.getConfig().getStringList("LostForceGames.Maps");
+			
 			if (main.getConfig().getStringList("LostForceGames.Maps").contains(key)) {
 			} else {
-				main.getConfig().getStringList("LostForceGames.Maps").add(key);
+				list.add(key);
+				main.getConfig().set("LostForceGames.Maps", list);
+				main.saveConfig();
 			}
 			main.saveConfig();
 		}

@@ -2,6 +2,7 @@ package lostForceGames.arena;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -56,9 +57,9 @@ public class ArenaAPI {
 		return game;
 	}
 
-	public int getMapSize() {
+	public int getMapSize(List<String> list) {
 
-		int size = main.list.size();
+		int size = list.size();
 
 		return size;
 	}
