@@ -1,0 +1,9 @@
+name: LostForceGames
+version: 0.1
+author: [manniL, xapfeltortexp,]
+
+main: lostForceGames.LostForceGames
+
+commands:
+  lfg:
+    description: game Command
