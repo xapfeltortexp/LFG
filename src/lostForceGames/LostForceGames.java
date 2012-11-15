@@ -3,6 +3,8 @@ package lostForceGames;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
+
+import lostForceGames.arena.ArenaAPI;
 import lostForceGames.arena.ArenaListener;
 import lostForceGames.commands.CommandCreate;
 import lostForceGames.commands.CommandEnable;
@@ -14,6 +16,7 @@ public class LostForceGames extends JavaPlugin {
 	
 	public HashMap<String, String> creator = new HashMap<String, String>();
 	public ArrayList<String> gamers = new ArrayList<String>();
+	public ArrayList<String> acctualMap = new ArrayList<String>();
 	
 	public String prefix = ChatColor.AQUA + "[" + ChatColor.DARK_GRAY + ChatColor.BOLD + "LF" + ChatColor.DARK_AQUA + ChatColor.BOLD + "Games" + ChatColor.AQUA + "] " + ChatColor.GRAY;
 	
@@ -21,6 +24,7 @@ public class LostForceGames extends JavaPlugin {
 	
 	public CommandCreate cmd;
 	public CommandEnable cmde;
+	public ArenaAPI api;
 	
 	public boolean enable;
 	
@@ -35,6 +39,9 @@ public class LostForceGames extends JavaPlugin {
 		
 		cmd = new CommandCreate(this);
 		cmde = new CommandEnable(this);
+		
+		api = new ArenaAPI(this);
+		
 		getCommand("lfg").setExecutor(cmde);
 		getCommand("lfg").setExecutor(cmd);
 		

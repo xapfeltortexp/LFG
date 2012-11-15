@@ -9,13 +9,13 @@ import org.bukkit.entity.Player;
 import lostForceGames.LostForceGames;
 
 public class ArenaAPI {
-	
+
 	public LostForceGames main;
-	
+
 	public ArenaAPI(LostForceGames main) {
 		this.main = main;
 	}
-	
+
 	public boolean isInArea(Player player, Location loc1, Location loc2) {
 		double[] ecke = new double[2];
 
@@ -39,14 +39,21 @@ public class ArenaAPI {
 
 		return true;
 	}
-	
+
 	public boolean isGameEmpty(ArrayList<String> arrayList) {
-		
-		if(arrayList.isEmpty()) {
+
+		if (arrayList.isEmpty()) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+
+	public String getAcctualArena(ArrayList<String> arrayList) {
+
+		String game = arrayList.get(0);
+
+		return game;
 	}
 
 }
